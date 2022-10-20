@@ -16,3 +16,23 @@ select YEAR(start_date) YEAR,
 from Reservations
 group by year, month 
 order by year, month 
+
+Задание 70
+
+Необходимо категоризовать жилье на economy, comfort, premium по цене соответственно <= 100, 100 < цена < 200, >= 200. 
+В качестве результата вывести таблицу с названием категории и количеством жилья, попадающего в данную категорию
+Поля в результирующей таблице:
+category
+count
+Используйте конструкцию "as category" и "as count" для вывода названия категории и количества такого жилья соответственно.
+
+select category, 
+    COUNT(*) as count 
+from (
+select case 
+    when price <= 100 then 'economy'
+    when price > 100 and price < 200 then 'comfort'
+    else 'premium'
+    end as category
+from rooms) as cat
+group by 1
