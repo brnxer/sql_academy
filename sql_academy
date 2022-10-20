@@ -1,0 +1,11 @@
+Задание 64
+
+Вывести количество бронирований по каждому месяцу каждого года, в которых было хотя бы 1 бронирование. Результат отсортируйте в порядке возрастания даты бронирования.
+
+
+select YEAR(start_date) YEAR,
+       MONTH(start_date) month,
+       count(1) as amount
+from Reservations
+group by year, month 
+order by year, month 
